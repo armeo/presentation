@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+	<head> <meta charset="utf-8">
+		<title>reveal.js - Fabric</title>
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<script>
+			// If the query includes 'print-pdf' we'll use the PDF print sheet
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="reveal">
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Fabric</h1>
+				</section>
+				<section>
+					<h2>What ?</h2>
+					<p>
+                    Fabric is a Python (2.5 or higher) library and command-line
+                    for streamlining the use of SSH for application or systems
+                    administration tasks.
+					</p>
+				</section>
+				<section>
+					<h2>Why ?</h2>
+					<ul>
+                        <li>DRY</li>
+						<li>Rapid Development</li>
+                        <li>Write once, do more</li>
+                        <li>Less codes than shell script</li>
+                        <li>Less mistakes than handwork</li>
+                        <li>Less time to operate many servers</li>
+					</ul>
+				</section>
+				<section>
+					<h2>How ?</h2>
+					<ul>
+						<li>Install with pip</li>
+						<li>Create fabfile.py</li>
+                        <li>Make your script</li>
+                        <li>Run (fab [command])</li>
+					</ul>
+				</section>
+                <section>
+                    <h2>Useful APIs</h2>
+                    <ul>
+                        <li>local(command) - run a command on the local host.</li>
+                        <li>run(command) - run a shell command on a remote host.</li>
+                        <li>sudo(connamd, user) - run a shell command on a remote host with superuser privileges.</li>
+                        <li>cd(path) - context manager that keeps directory state when calling remote operations</li>
+                        <li>put/get - copy a file from/to a remote host</li>
+                        <li>prompt - ask the user for information</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Configuration</h2>
+                    <ul>
+                        <li>hosts - The global host list</li>
+                        <li>password - THe default password used by the SSH and/or when answering sudo prompts</li>
+                        <li>warn_only - Specifies whether or not to warn, when run/sudo/local encounter error conditions.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Execute comands</h2>
+                    <ul>
+                        <li>Get output and return code:
+                            <ul>
+                                <li>output = run("command")</li>
+                            </ul>
+                        </li>
+                        <li>Chain commands:
+                            <ul>
+                                <li>run("workon env && git pull")</li>
+                            </ul>
+                        </li>
+                        <li>Start pseudo-daemons:
+                            <ul>
+                                <li>run("screen -d -m not-a-daemon")</li>
+                            </ul>
+                        </li>
+                        <li>Any return code except 0 is treated as an error and an exception is thrown (unless warn_only is set)</li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    ## Keeping state: Directory
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    with cd("var/www/app"):
+                        run("git pull origin master")
+                        run("cucumber")
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Keeping state: running from trunk
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    with prefix("workon env_app"):
+                        run("pip install nose")
+                    </code></pre>
+                </section>
+				<section>
+					<h1>THE END</h1>
+					<h3>???</h3>
+				</section>
+			</div>
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+		</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script>
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				
+				theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+				]
+			});
+		</script>
+	</body>
+</html>
