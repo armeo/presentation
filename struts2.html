@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+	<head> <meta charset="utf-8">
+		<title>Struts2</title>
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<script>
+			// If the query includes 'print-pdf' we'll use the PDF print sheet
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="reveal">
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Struts 2</h1>
+				</section>
+				<section>
+					<h2>What ?</h2>
+                    <ul>
+                        <li>Created by Craig R. McClanahan</li>
+                        <li>Donated to the Apache software foundation in 2000</li>
+						<li>Open source framework</li>
+						<li>Base on Java Servlets and JSP technologies</li>
+						<li>Action Based Framework</li>
+                        <li>Create web application using MVC 2 architecture</li>
+                        <li>Struts 2 = WebWork + Struts</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Why ?</h2>
+					<ul>
+						<li>Free to develop & deploy - open source</li>
+						<li>Stable & Mature</li>
+						<li>Many supported third-party tools</li>
+                        <li>Feature-rich</li>
+                        <li>Flexible & Extendable</li>
+                        <li>Large User Community, Expert Developers and Committers</li>
+                        <li>Easy plug-in</li>
+                        <li>AJAX support</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Struts 2 framework features</h2>
+					<ul>
+						<li>POJO based actions that are easy to test</li>
+						<li>Action based framework</li>
+                        <li>Model 2 - MVC Implementation</li>
+                        <li>Internationalization(I18N) Support</li>
+                        <li>Rich JSP Tag Libraries</li>
+                        <li>Annotation and XML configuration options</li>
+                        <li>Easy to test and debug</li>
+					</ul>
+				</section>
+                <section>
+                    <h2>MVC - Model</h2>
+                    <ul>
+                        <li>Implement by action class</li>
+                        <li>For model you can use any data access technologies like JDBC, EJB, Hibernate</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>MVC - View</h2>
+                    <ul>
+                        <li>Its your result part. It can be JSP, JSTL, JSF etc.</li>
+                        <li>Presentation part of the MVC</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>MVC - Controller</h2>
+                    <ul>
+                        <li>FilterDispatcher
+                            <ul>
+                                <li>First component that start processing that is why this type of MVC is called front controller MVC</li>
+                                <li>Looks at the request and apply the appropriate action</li>
+                                <li>Struts framework handles all of the controller work</li>
+                                <li>Its configured in web.xml</li>
+                            </ul>
+                        </li>
+                        <li>Interceptors
+                            <ul>
+                                <li>Can execute code before and after an Action is executed</li>
+                                <li>They can be configured per action basis</li>
+                                <li>Can be used for data validation, file upload, double submit guards</li>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Request Lifecycle in Struts 2</h2>
+                    <p><img width="480" height="185" src="img/struts-2-request-cycle.png"></p>
+                </section>
+                <section>
+                    <h2>Struts Workflow</h2>
+                    <p><img width="400" height="500" src="img/Struts2-Architecture.png"></p>
+                </section>
+                <section>
+                    <h2>Action</h2>
+                    <ul>
+                        <li>Is a basic unit of work</li>
+                        <li>POJO class which has execute method and properties</li>
+                        <li>Action Mapping maps an identifier to action class</li>
+                        <li>Mapping also specifies
+                            <ul>
+                                <li>Set of Result Types</li>
+                                <li>Set of Exception Handlers</li>
+                                <li>An Interceptor Stack</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Result</h2>
+                    <ul>
+                        <li>When an Action class method completes, it return a String
+                            <ul>
+                                <li>THe value of String is used to select a result element</li>
+                                <li>An action mapping will often have a set of results representing different possible outcomes</li>
+                            </ul>
+                        </li>
+                        <li>There are predefined result names (tokens)</li>
+                        <li>Applications can define other result names (tokens) to match specific cases</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Pre-defined result names (tokens)</h2>
+                    <ul>
+                        <li>String SUCCESS = "success";</li>
+                        <li>String NONE = "none";</li>
+                        <li>String ERROR = "error";</li>
+                        <li>String INPUT = "input";</li>
+                        <li>String LOGIN = "login";</li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    ## Action Mapping
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    &lt;action name="Logon" class="tutorial.Logon"&gt;
+                        &lt;result type="redirect-action"&gt;Menu&lt;/result&gt;
+                        &lt;result type="input"&gt;/tutorial/Logon.jsp&lt;/result&gt;
+                    &lt;/action&gt;
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Defining Validation Rules</h2>
+                    <ul>
+                        <li>Per Action class:
+                            <ul>
+                                <li>in a file named &lt;ActionName&gt;-validation.xml</li>
+                            </ul>
+                        </li>
+                        <li>Per Action alias:
+                            <ul>
+                                <li>in a file named &lt;ActionName-alias&gt;-validation.xml</li>
+                            </ul>
+                        </li>
+                        <li>Inheritance hierarchy and interfaces implementd by Action class</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Bundled Plugins</h2>
+                    <ul>
+                        <li>JSF</li>
+                        <li>REST</li>
+                        <li>Spring</li>
+                        <li>Tiles</li>
+                        <li>JasperReports</li>
+                        <li>JFreeChart</li>
+                        <li>Etc.</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Struts Plugins</h2>
+                    <p><img width="534" height="290" src="img/struts-2-pulgin.png"></p>
+                </section>
+                <section>
+                    <h2>Components</h2>
+                    <ul>
+                        <li>web.xml
+                            <ul>
+                                <li>Installs a Filter on /*</li>
+                            </ul>
+                        </li>
+                        <li>struts.xml
+                            <ul>
+                                <li>Maps Action names</li>
+                                <li>Defines the navigation flow</li>
+                            </ul>
+                        </li>
+                        <li>Actions
+                            <ul>
+                                <li>Execute a task</li>
+                            </ul>
+                        </li>
+                        <li>Views (JSP or others)
+                            <ul>
+                                <li>Render the UI</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    ## Create web application with Maven
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    mvn archetype:generate \
+                    -DarchetypeGroupId=org.apache.maven.archetypes \
+                    -DarchetypeArtifactId=maven-archetype-webapp \
+                    -DgroupId=com.aug.app \
+                    -DartifactId=augwebapp
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Add `struts2-core` in `pom.xml`
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    &lt;dependency&gt;
+                        &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+                        &lt;artifactId&gt;struts2uts2-core&lt;/artifactId&gt;
+                        &lt;version&gt;2.3.16.1&lt;/version&gt;
+                    &lt;/dependency&gt;
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Convert to Eclipse project
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    mvn eclipse:eclipse -Dwtpversion=2.0
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Login.jsp
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    &lt;%@ page contentType="text/html; charset=UTF-8"%&gt;
+                    &lt;%@ taglib prefix="s" uri="/struts-tags"%&gt;
+                    &lt;html&gt;
+                    &lt;head&gt;&lt;/head&gt;
+                    &lt;body&gt;
+                        &lt;h1&gt;Augmentis Login&lt;/h1&gt;
+                        &lt;s:form action="Welcome"&gt;
+                            &lt;s:textfield name="username" label="Username" /&labelgt;
+                            &lt;s:password name="password" label="Password" /&gt;
+                            &lt;s:submit /&gt;
+                        &lt;/s:form&gt;
+                    &lt;/body&gt;
+                    &lt;/html&gt;
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## welcome.jsp
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    &lt;%@ page contentType="text/html; charset=UTF-8"%&gt;
+                    &lt;%@ taglib prefix="s" uri="/struts-tags"%&gt;
+                    &lt;html&gt;
+                    &lt;head&gt;&lt;/head&gt;
+                    &lt;body&gt;
+                        &lt;h1&gt;Augmentis Web Application&lt;/h1&gt;
+                        &h1lt;h4&gt;
+                        Hello
+                        &lt;s:property value="username" /&gt;
+                        &lt;/h4&gt;
+                    &lt;/body&gt;
+                    &lt;/html&gt;
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Action class
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    public class WelcomeUserAction{
+                        private String username;
+
+                        pulginblic String getUsername() {
+                            return username;
+                        }
+
+                        public void setUsername(String username) {
+                            this.username = username;
+                        }
+
+                        // all struts logic here
+                        public String execute() {
+                            return "SUCCESS";
+                        }
+                    }
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## struts.xml
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+                    &lt;!DOCTYPE struts PUBLIC
+                    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                    "http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
+
+                    &lt;struts&gt;
+                        &lt;package name="user" namespace="/User" extends="struts-default"&gt;
+                            &lt;action name="Login"&gt;
+                                &lt;result&gt;pages/login.jsp&lt;/result&gt;
+                            &lt;/action&gt;
+                            &lt;action name="Welcome" class="com.aug.user.action.WelcomeUserAction"&gt;
+                                &lt;result name="SUCCESS"&gt;pages/welcome.jsp&lt;/result&gt;
+                            &lt;/action&gt;
+                        &lt;/package&gt;
+                    &lt;/struts&gt;
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## web.xml
+                    <pre><code contenteditable style="margin-top: 20px;">
+                    &lt;!DOCTYPE web-app PUBLIC
+                     "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+                      "http://java.sun.com/dtd/web-app_2_3.dtd" &gt;
+
+                    &lt;web-app&gt;
+                        &lt;display-name&gt;Augmentis Web Application&lt;/display-name&gt;
+                        &lt;filter&gt;
+                            &lt;filter-name&gt;struts2&lt;/filter-name&gt;
+                            &lt;filter-class&gt;
+                            org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+                            &lt;/filter-class&gt;
+                        &lt;/filter&gt;
+                        &lt;filter-mapping&gt;
+                            &lt;filter-name&gt;struts2&lt;/filter-name&gt;
+                            &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+                       &lt;/filter-mapping&gt;
+                    &lt;/web-app&gt;
+                    </code></pre>
+                </section>
+				<section>
+					<h1>THE END</h1>
+					<h3>???</h3>
+				</section>
+			</div>
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+		</div>
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+		<script>
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				
+				theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+				]
+			});
+		</script>
+	</body>
+</html>
