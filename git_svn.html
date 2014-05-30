@@ -1,0 +1,666 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head> <meta charset="utf-8">
+		
+		<title>reveal.js - GIT & SVN</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script>
+			// If the query includes 'print-pdf' we'll use the PDF print sheet
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		<div class="reveal">
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>GIT & SVN</h1>
+				</section>
+				<section>
+					<h2>Why Version Control System ?</h2>
+					<p>Collaboration Issue !!</p>
+					<p><img width="400" height="400" src="http://carriebjackson.files.wordpress.com/2012/09/collaboration1.jpg" alt="Down arrow"></p>
+					<p><font size="4px">http://carriebjackson.files.wordpress.com/2012/09/collaboration1.jpg</font></p>
+				</section>
+				<section>
+					<h2>Version Control System</h2>
+					<ul>
+						<li>Local</li>
+						<li>Centralize</li>
+						<li>Distributed</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Local</h2>
+					<p>Copy file and folder</p>
+					<p><img width="400" height="400" src="http://git-scm.com/figures/18333fig0101-tn.png"></p>
+					<p><font size="4px">http://git-scm.com/figures/18333fig0101-tn.png</font></p>
+				</section>
+				<section>
+					<h2>Centralize</h2>
+					<p>CVS, SVN</p>
+					<p><img width="500" height="400" src="http://git-scm.com/figures/18333fig0102-tn.png"></p>
+					<p><font size="4px">http://git-scm.com/figures/18333fig0102-tn.png</font></p>
+				</section>
+				<section>
+					<h2>Distributed</h2>
+					<p>Git, Mercurial HG, Bazaar</p>
+					<p><img width="500" height="400" src="http://git-scm.com/figures/18333fig0103-tn.png"></p>
+					<p><font size="4px">http://git-scm.com/figures/18333fig0103-tn.png</font></p>
+				</section>
+				<section>
+					<h2>Why SVN ?</h2>
+					<ul>
+						<li>Powerful with command line interface</li>
+						<li>Free / Open source</li>
+						<li>Faster</li>
+						<li>DB based not file based</li>
+						<li>Customized attributes to be attached to files</li>
+						<li>Automatically handles all file types without instructions</li>
+                        <li>Support Folder / File rename & copies maintaining the history</li>
+					</ul>
+				</section>
+				<section>
+					<h2>SVN Dataflow</h2>
+					<p><img width="400" height="400" src="http://chadthompson.me/wp-content/uploads/2012/12/svn-workflow.png" alt="Down arrow"></p>
+					<p><font size="4px">http://chadthompson.me/wp-content/uploads/2012/12/svn-workflow.png</font></p>
+				</section>
+				<section>
+					<h2>SVN Repository</h2>
+					<ul>
+						<li>branches - Experimental</li>
+						<li>tags - Specific version</li>
+						<li>trunk - Main copy</li>
+					</ul>
+				</section>
+				<section>
+					<h2>SVN in Action</h2>
+					<ul>
+                        <li>svn checkout [repo_url]</li>
+						<li>svn add [a file/directory]</li>
+						<li>svn delete</li>
+                        <li>svn commit</li>
+                        <li>svn update</li>
+                        <li>svn mv(move)</li>
+                        <li>svn help</li>
+                        <li>svn diff</li>
+                        <li>svn revert</li>
+                        <li>svn list</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Why GIT ?</h2>
+					<ul>
+						<li>Distributed - no single of failure</li>
+						<li>Speed - work on local</li>
+						<li>Simple - less config</li>
+						<li>Non-linear development</li>
+						<li>Easy Merging</li>
+						<li>No file locks</li>
+					</ul>
+				</section>
+				<section>
+					<h2>Git Dataflow</h2>
+					<p><img width="300" height="300" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Git_data_flow_simplified.svg/300px-Git_data_flow_simplified.svg.png"></p>
+					<p><font size="4px">http://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Git_data_flow_simplified.svg/300px-Git_data_flow_simplified.svg.png</font></p>
+				</section>
+				<section data-markdown>
+					## Start From Scratch
+					<pre><code contenteditable style="margin-top: 20px;">
+						arm$ git init
+						Initialized empty Git repository in /Users/arm/Documents/workspace/git101/.git/
+						
+					</code></pre>
+				</section>
+				<section data-markdown>
+					## Existing Repo
+					<pre><code contenteditable style="margin-top: 20px;">
+						arm$ git clone https://github.com/huskycode/foresee.git &ltlocation&gt
+						
+					</code></pre>
+				</section>
+				<section data-markdown>
+					## Git Help
+					<pre><code contenteditable style="margin-top: 20px;">
+						arm$ git help
+						 
+					</code></pre>
+				</section>
+				<section data-markdown>
+					## Git Setting
+					<pre><code contenteditable style="margin-top: 20px;">
+						arm$ git config --global user.name "Arm"
+						arm$ git config --global user.email "arm@prontomarketing.com"
+						arm$ git config --global color.ui auto
+						arm$ git config --global alias.st status
+
+					</code></pre>
+				</section>
+				<section data-markdown>
+					## Committing a change
+					<pre><code contenteditable style="margin-top: 20px;">
+						arm$ echo "Initial README" > README.md
+						arm$ git add README.md 
+						arm$ git commit -m "Add README"
+						[master (root-commit) d369bc8] Add README
+						 1 file changed, 1 insertion(+)
+						 create mode 100644 README.md
+						 
+					</code></pre>
+				</section>								
+				<section data-markdown>
+					## What Happened
+					<pre><code contenteditable style="margin-top: 20px;">
+						arm$ git log
+						commit d369bc8ccc7e86de1e8c99df8c142674380dcdcd
+						Author: pronto.arm <arm@prontomarketing.com>
+						Date:   Thu Mar 21 22:19:37 2013 +0700
+
+						    Add README
+								
+					</code></pre>
+				</section>
+                <section>
+                    <h2>The Staging area</h2>
+                    <p><img width="350" height="200" src="http://codingdomain.com/git/partial-commits/git-staging-area.png"></p>
+                    <p><font size="4px">http://codingdomain.com/git/partial-commits/git-staging-area.png</font></p>
+                </section>
+                <section>
+                    <h2>Workflow</h2>
+                    <ul>
+                        <li> Code</li>
+                        <li> Stage your changes (git add)</li>
+                        <li> Review your work (git status, git diff)</li>
+                        <li> Commit (locally) (git commit)</li>
+                        <li> Repeat</li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    ## Un-Stages Change
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        arm$ echo "I'm updateing README" > README.md 
+                        arm$ git status
+                        # On branch master
+                        # Changes not staged for commit:
+                        #   (use "git add <file>..." to update what will be committed)
+                        #   (use "git checkout -- <file>..." to discard changes in working directory)
+                        #
+                        #	modified:   README.md
+                        #
+                        no changes added to commit (use "git add" and/or "git commit -a")
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Stages Change
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        arm$ git add .
+                        arm$ git status
+                        # On branch master
+                        # Changes to be committed:
+                        #   (use "git reset HEAD <file>..." to unstage)
+                        #
+                        #	modified:   README.md
+                        #
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Reset
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        arm$ git reset
+                        Unstaged changes after reset:
+                        M	README.md
+                        arm$ git status
+                        # On branch master
+                        # Changes not staged for commit:
+                        #   (use "git add <file>..." to update what will be committed)
+                        #   (use "git checkout -- <file>..." to discard changes in working directory)
+                        #
+                        #	modified:   README.md
+                        #
+                        no changes added to commit (use "git add" and/or "git commit -a")
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Hard Reset
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        arm$ git reset --hard HEAD
+                        HEAD is now at d369bc8 Add README
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Why Branch ?</h2>
+                    <ul>
+                        <li> Safely experiment with new ideas</li>
+                        <li> Agility</li>
+                        <li> Git makes branching easy</li>
+                        <li> Git makes mergeing (usually...) very easy</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Branch and Merge</h2>
+                    <p><img width="440" height="240" src="http://git-scm.com/figures/18333fig0317-tn.png"></p>
+                    <p><font size="4px">http://git-scm.com/figures/18333fig0317-tn.png</font></p>
+                </section>
+                <section data-markdown>
+                    ## How do we do it ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        arm$ git checkout -b new_feature
+                        Switched to a new branch 'new_feature'
+                        arm$ git branch
+                          master
+                        * new_feature
+                        arm$ git checkout master
+                        Switched to branch 'master'
+                        arm$ git branch
+                        * master
+                          new_feature
+                        arm$ git branch -d new_feature
+                        Deleted branch new_feature (was d369bc8).
+                        arm$ git branch
+                        * master
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## What about merge ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        arm$ git checkout -b update_readme
+                        arm$ git branch
+                          master
+                        * update_readme
+                        arm$ vi README.md
+                        arm$ git add .
+                        arm$ git commit -m "update README"
+                        [update_readme 78fb5b8] update README
+                         1 file changed, 2 insertions(+)
+                        arm$ git status
+                        # On branch update_readme
+                        nothing to commit (working directory clean)
+                        arm$ git checkout master
+                        Switched to branch 'master'
+                        arm$ git merge update_readme
+                        Updating d369bc8..78fb5b8
+                        Fast-forward
+                         README.md | 2 ++
+                         1 file changed, 2 insertions(+)
+                        arm$ git status
+                        # On branch master
+                        nothing to commit (working directory clean)
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Conflict !!
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        Try ...
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Sharing your work
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git remote add &ltremote_name&gt &ltremote_url&gt
+                        git push &ltremote_name&gt &ltbranch_name&gt
+                        git pull &ltremote_name&gt &ltbranch_name&gt
+                        git fetch &ltremote_name&gt &ltbranch_name&gt
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Viewing Changes
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git log # show a log of changes
+                        git status # see which file you changed
+                        git diff # view uncommitted changes in the working copy
+                        git show &ltcommitid&gt	# show one commit
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Undoing local changes
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git checkout &ltfilename&gt #restore original, throw local changes away
+                        git checkout -f # throw all local changes away
+                        git reset --hard # the same
+                        git rm &ltfilename&gt # remove file
+                    </code></pre>
+                </section>
+				<section>
+					<h1>Scenario based: Problem & Solutions</h1>
+				</section>
+                <section data-markdown>
+                    ## How to create a local repo ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git init
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to clone a remote repo ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git clone [repo_url]
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to see history ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git log --oneline --graph
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to used alias ?
+                    <pre><code contenteditable style="margin-top: 20px;">git config --global alias.lg "log --graph --decorate --oneline --abbrev-commit"</code></pre>
+                </section>
+                <section>
+                    <p><img width="500" height="400" src="img/1.png"></p>
+                </section>
+                <section data-markdown>
+                    ## How to make a commit ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git status
+                        echo 'hello world' >> file1.txt
+                        git status
+                        git add file1.txt
+                        git status
+                        git commit -m "my first commit"
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="600" height="400" src="img/2.png"></p>
+                    <p>svn add != git add</p>
+                </section>
+                <section>
+                    <p><img width="800" height="500" src="img/3.png"></p>
+                </section>
+                <section data-markdown>
+                    ## Git Diff
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        echo 'test git diff' >> file1.txt
+                        git status
+                        git diff
+                        git add file1.txt
+                        git status
+                        # change to be committed # (use "git rm --cached [file]" to unstage)
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="600" height="500" src="img/4.png"></p>
+                </section>
+                <section data-markdown>
+                    ## Index is a SNAPSHOT!!
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        echo 'forgot something' >> file1.txt
+                        git status
+                        git diff
+                        git commit -am "add something"
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="800" height="400" src="img/5.png"></p>
+                </section>
+                <section data-markdown>
+                    ## How to create a new branch ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git branch feature1
+                        git branch
+                        git checkout feature1
+                        git branch
+                        git lg
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="500" height="400" src="img/6.png"></p>
+                </section>
+                <section>
+                    <p><img width="600" height="550" src="img/7.png"></p>
+                </section>
+                <section>
+                    <p><img width="620" height="550" src="img/8.png"></p>
+                </section>
+                <section data-markdown>
+                    ## How to create a new branch and switch to it ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git checkout -b feature2
+                        git branch
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to create a new branch from a commit point ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git checkout -b feature3 HEAD~1
+                        git branch
+                        git lg --all
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## Makes 2 commit to feature2 branch
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git checkout feature2
+                        echo 'feature 2.1' >> feature2.txt
+                        git add feature2.txt
+                        git commit -m "completed task 2.1"
+                        echo 'feature 2.2' >> feature2.txt
+                        git commit -am "complete task 2.2"
+                        git lg
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="790" height="600" src="img/9.png"></p>
+                </section>
+                <section data-markdown>
+                    ## How to merge a branch ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git checkout master
+                        git merge feature2
+                        git lg
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="820" height="540" src="img/10.png"></p>
+                </section>
+                <section data-markdown>
+                    ## Switch back to feature3 branch and create 1 new commit !!
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git checkout feature3
+                        echo 'feature3' >> feature3.txt
+                        git add feature3.txt
+                        git commit -m "complete feature3"
+                        git lg
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="840" height="600" src="img/11.png"></p>
+                </section>
+                <section data-markdown>
+                    ## Switch back to master branch and merge feature3 branch !!
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git checkout master
+                        git merge feature3
+                        git lg
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="930" height="570" src="img/12.png"></p>
+                </section>
+                <section data-markdown>
+                    ## How to reset a branch ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git checkout master
+                        git reset --hard feature2
+                        git lg
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="740" height="600" src="img/13.png"></p>
+                </section>
+                <section data-markdown>
+                    ## How to delete a branch ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git checkout master
+                        git branch -D feature2
+                        git branch
+                        git lg
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="740" height="600" src="img/14.png"></p>
+                </section>
+                <section data-markdown>
+                    ## How to rebase a branch ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git checkout feature3
+                        git rebase master
+                        git branch
+                        git lg
+                    </code></pre>
+                </section>
+                <section>
+                    <p><img width="930" height="600" src="img/15.png"></p>
+                </section>
+                <section>
+                    <p><img width="890" height="470" src="img/16.png"></p>
+                </section>
+                <section>
+                    <p><img width="880" height="460" src="img/17.png"></p>
+                </section>
+                <section data-markdown>
+                    ## How to see remote details ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git remote -v
+                        git remote show origin
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to see tracking remote branches ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git branch -r
+                        git branch -a
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to push changes to a branch
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git push origin master
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to pull from remote
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git pull origin master
+                        # git pull == git fetch; git merge origin/master #
+                        # git pull --rebase == git fetch; git rebase origin/master #
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to stash changes ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git reset --hard HEAD~1
+                        echo 'test stash' >> feature2.txt
+                        git status
+                        git pull origin master
+                        git stash
+                        git status
+                        git pull origin master
+                        git stash pop
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to create a tag ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git tag v1.0
+                        git tag v1.1 [commit]
+                        git push origin v1.0
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to delete a local branch ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git branch -D feature2
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to delete a remote branch ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git push origin :feature2
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to remove deleted tracking branch ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git branch -a
+                        git fetch
+                        git prune
+                        git fetch -p
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    ## How to revert a public commit ?
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        git revert #commit
+                    </code></pre>
+                </section>
+				<section>
+					<h1>THE END</h1>
+					<h3>???</h3>
+				</section>
+			</div>
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				
+				theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+				]
+			});
+			
+		</script>
+
+	</body>
+</html>
