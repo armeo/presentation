@@ -31,7 +31,7 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Struts 2</h1>
+					<h1>MVC - Struts 2</h1>
 				</section>
 				<section>
 					<h2>What ?</h2>
@@ -152,10 +152,12 @@
                 <section data-markdown>
                     ## Action Mapping
                     <pre><code contenteditable style="margin-top: 20px;">
-                    &lt;action name="Logon" class="tutorial.Logon"&gt;
-                        &lt;result type="redirect-action"&gt;Menu&lt;/result&gt;
-                        &lt;result type="input"&gt;/tutorial/Logon.jsp&lt;/result&gt;
-                    &lt;/action&gt;
+
+                        &lt;action name="Logon" class="tutorial.Logon"&gt;
+                            &lt;result type="redirect-action"&gt;Menu&lt;/result&gt;
+                            &lt;result type="input"&gt;/tutorial/Logon.jsp&lt;/result&gt;
+                        &lt;/action&gt;
+
                     </code></pre>
                 </section>
                 <section>
@@ -187,10 +189,6 @@
                     </ul>
                 </section>
                 <section>
-                    <h2>Struts Plugins</h2>
-                    <p><img width="534" height="290" src="img/struts-2-pulgin.png"></p>
-                </section>
-                <section>
                     <h2>Components</h2>
                     <ul>
                         <li>web.xml
@@ -219,125 +217,124 @@
                 <section data-markdown>
                     ## Create web application with Maven
                     <pre><code contenteditable style="margin-top: 20px;">
-                    mvn archetype:generate \
-                    -DarchetypeGroupId=org.apache.maven.archetypes \
-                    -DarchetypeArtifactId=maven-archetype-webapp \
-                    -DgroupId=com.aug.app \
-                    -DartifactId=augwebapp
+                        mvn archetype:generate \
+                        -DarchetypeGroupId=org.apache.maven.archetypes \
+                        -DarchetypeArtifactId=maven-archetype-webapp \
+                        -DgroupId=com.aug.app \
+                        -DartifactId=augwebapp
                     </code></pre>
                 </section>
                 <section data-markdown>
-                    ## Add `struts2-core` in `pom.xml`
+                    ## Add struts2-core in pom.xml
                     <pre><code contenteditable style="margin-top: 20px;">
-                    &lt;dependency&gt;
-                        &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
-                        &lt;artifactId&gt;struts2uts2-core&lt;/artifactId&gt;
-                        &lt;version&gt;2.3.16.1&lt;/version&gt;
-                    &lt;/dependency&gt;
+
+                        &lt;dependency&gt;
+                            &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
+                            &lt;artifactId&gt;struts2-core&lt;/artifactId&gt;
+                            &lt;version&gt;2.3.16.1&lt;/version&gt;
+                        &lt;/dependency&gt;
+
                     </code></pre>
                 </section>
                 <section data-markdown>
                     ## Convert to Eclipse project
                     <pre><code contenteditable style="margin-top: 20px;">
-                    mvn eclipse:eclipse -Dwtpversion=2.0
+                        mvn eclipse:eclipse -Dwtpversion=2.0
                     </code></pre>
                 </section>
                 <section data-markdown>
                     ## Login.jsp
                     <pre><code contenteditable style="margin-top: 20px;">
-                    &lt;%@ page contentType="text/html; charset=UTF-8"%&gt;
-                    &lt;%@ taglib prefix="s" uri="/struts-tags"%&gt;
-                    &lt;html&gt;
-                    &lt;head&gt;&lt;/head&gt;
-                    &lt;body&gt;
-                        &lt;h1&gt;Augmentis Login&lt;/h1&gt;
-                        &lt;s:form action="Welcome"&gt;
-                            &lt;s:textfield name="username" label="Username" /&labelgt;
-                            &lt;s:password name="password" label="Password" /&gt;
-                            &lt;s:submit /&gt;
-                        &lt;/s:form&gt;
-                    &lt;/body&gt;
-                    &lt;/html&gt;
+                        &lt;%@ page contentType="text/html; charset=UTF-8"%&gt;
+                        &lt;%@ taglib prefix="s" uri="/struts-tags"%&gt;
+                        &lt;html&gt;
+                        &lt;head&gt;&lt;/head&gt;
+                        &lt;body&gt;
+                            &lt;h1&gt;Augmentis Login&lt;/h1&gt;
+                            &lt;s:form action="Welcome"&gt;
+                                &lt;s:textfield name="username" label="Username" /&gt;
+                                &lt;s:password name="password" label="Password" /&gt;
+                                &lt;s:submit /&gt;
+                            &lt;/s:form&gt;
+                        &lt;/body&gt;
+                        &lt;/html&gt;
                     </code></pre>
                 </section>
                 <section data-markdown>
                     ## welcome.jsp
                     <pre><code contenteditable style="margin-top: 20px;">
-                    &lt;%@ page contentType="text/html; charset=UTF-8"%&gt;
-                    &lt;%@ taglib prefix="s" uri="/struts-tags"%&gt;
-                    &lt;html&gt;
-                    &lt;head&gt;&lt;/head&gt;
-                    &lt;body&gt;
-                        &lt;h1&gt;Augmentis Web Application&lt;/h1&gt;
-                        &h1lt;h4&gt;
-                        Hello
-                        &lt;s:property value="username" /&gt;
-                        &lt;/h4&gt;
-                    &lt;/body&gt;
-                    &lt;/html&gt;
+                        &lt;%@ page contentType="text/html; charset=UTF-8"%&gt;
+                        &lt;%@ taglib prefix="s" uri="/struts-tags"%&gt;
+                        &lt;html&gt;
+                        &lt;head&gt;&lt;/head&gt;
+                        &lt;body&gt;
+                            &lt;h1&gt;Augmentis Web Application&lt;/h1&gt;
+                            &lt;h4&gt;Hello &lt;s:property value="username"/&gt;&lt;/h4&gt;
+                        &lt;/body&gt;
+                        &lt;/html&gt;
                     </code></pre>
                 </section>
                 <section data-markdown>
                     ## Action class
                     <pre><code contenteditable style="margin-top: 20px;">
-                    public class WelcomeUserAction{
-                        private String username;
+                        public class WelcomeUserAction{
+                            private String username;
 
-                        pulginblic String getUsername() {
-                            return username;
-                        }
+                            pulginblic String getUsername() {
+                                return username;
+                            }
 
-                        public void setUsername(String username) {
-                            this.username = username;
-                        }
+                            public void setUsername(String username) {
+                                this.username = username;
+                            }
 
-                        // all struts logic here
-                        public String execute() {
-                            return "SUCCESS";
+                            // all struts logic here
+                            public String execute() {
+                                return "SUCCESS";
+                            }
                         }
-                    }
                     </code></pre>
                 </section>
                 <section data-markdown>
                     ## struts.xml
                     <pre><code contenteditable style="margin-top: 20px;">
-                    &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
-                    &lt;!DOCTYPE struts PUBLIC
-                    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-                    "http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
+                        &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+                        &lt;!DOCTYPE struts PUBLIC
+                        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+                        "http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
 
-                    &lt;struts&gt;
-                        &lt;package name="user" namespace="/User" extends="struts-default"&gt;
-                            &lt;action name="Login"&gt;
-                                &lt;result&gt;pages/login.jsp&lt;/result&gt;
-                            &lt;/action&gt;
-                            &lt;action name="Welcome" class="com.aug.user.action.WelcomeUserAction"&gt;
-                                &lt;result name="SUCCESS"&gt;pages/welcome.jsp&lt;/result&gt;
-                            &lt;/action&gt;
-                        &lt;/package&gt;
-                    &lt;/struts&gt;
+                        &lt;struts&gt;
+                            &lt;package name="user" namespace="/User" extends="struts-default"&gt;
+                                &lt;action name="Login"&gt;
+                                    &lt;result&gt;pages/login.jsp&lt;/result&gt;
+                                &lt;/action&gt;
+                                &lt;action name="Welcome" class="com.aug.user.action.WelcomeUserAction"&gt;
+                                    &lt;result name="SUCCESS"&gt;pages/welcome.jsp&lt;/result&gt;
+                                &lt;/action&gt;
+                            &lt;/package&gt;
+                        &lt;/struts&gt;
                     </code></pre>
                 </section>
                 <section data-markdown>
                     ## web.xml
                     <pre><code contenteditable style="margin-top: 20px;">
-                    &lt;!DOCTYPE web-app PUBLIC
-                     "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-                      "http://java.sun.com/dtd/web-app_2_3.dtd" &gt;
+                        &lt;!DOCTYPE web-app PUBLIC
+                         "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+                          "http://java.sun.com/dtd/web-app_2_3.dtd" &gt;
 
-                    &lt;web-app&gt;
-                        &lt;display-name&gt;Augmentis Web Application&lt;/display-name&gt;
-                        &lt;filter&gt;
-                            &lt;filter-name&gt;struts2&lt;/filter-name&gt;
-                            &lt;filter-class&gt;
-                            org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
-                            &lt;/filter-class&gt;
-                        &lt;/filter&gt;
-                        &lt;filter-mapping&gt;
-                            &lt;filter-name&gt;struts2&lt;/filter-name&gt;
-                            &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
-                       &lt;/filter-mapping&gt;
-                    &lt;/web-app&gt;
+                        &lt;web-app&gt;
+                            &lt;display-name&gt;Augmentis Web Application&lt;/display-name&gt;
+                            &lt;filter&gt;
+                                &lt;filter-name&gt;struts2&lt;/filter-name&gt;
+                                &lt;filter-class&gt;
+                                org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+                                &lt;/filter-class&gt;
+                            &lt;/filter&gt;
+                            &lt;filter-mapping&gt;
+                                &lt;filter-name&gt;struts2&lt;/filter-name&gt;
+                                &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+                           &lt;/filter-mapping&gt;
+                        &lt;/web-app&gt;
                     </code></pre>
                 </section>
 				<section>
