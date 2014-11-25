@@ -231,7 +231,7 @@
                         &lt;dependency&gt;
                             &lt;groupId&gt;org.apache.struts&lt;/groupId&gt;
                             &lt;artifactId&gt;struts2-core&lt;/artifactId&gt;
-                            &lt;version&gt;2.3.16.1&lt;/version&gt;
+                            &lt;version&gt;2.3.16.3&lt;/version&gt;
                         &lt;/dependency&gt;
 
                     </code></pre>
@@ -251,7 +251,7 @@
                         &lt;head&gt;&lt;/head&gt;
                         &lt;body&gt;
                             &lt;h1&gt;Augmentis Login&lt;/h1&gt;
-                            &lt;s:form action="Welcome"&gt;
+                            &lt;s:form action="welcome"&gt;
                                 &lt;s:textfield name="username" label="Username" /&gt;
                                 &lt;s:password name="password" label="Password" /&gt;
                                 &lt;s:submit /&gt;
@@ -269,7 +269,7 @@
                         &lt;head&gt;&lt;/head&gt;
                         &lt;body&gt;
                             &lt;h1&gt;Augmentis Web Application&lt;/h1&gt;
-                            &lt;h4&gt;Hello &lt;s:property value="username"/&gt;&lt;/h4&gt;
+                            &lt;h4&gt;Welcome &lt;s:property value="username"/&gt; !! &lt;/h4&gt;
                         &lt;/body&gt;
                         &lt;/html&gt;
                     </code></pre>
@@ -277,10 +277,10 @@
                 <section data-markdown>
                     ## Action class
                     <pre><code contenteditable style="margin-top: 20px;">
-                        public class WelcomeUserAction{
+                        public class WelcomeAction{
                             private String username;
 
-                            pulginblic String getUsername() {
+                            public String getUsername() {
                                 return username;
                             }
 
@@ -288,9 +288,8 @@
                                 this.username = username;
                             }
 
-                            // all struts logic here
                             public String execute() {
-                                return "SUCCESS";
+                                return "success";
                             }
                         }
                     </code></pre>
@@ -304,12 +303,12 @@
                         "http://struts.apache.org/dtds/struts-2.0.dtd"&gt;
 
                         &lt;struts&gt;
-                            &lt;package name="user" namespace="/User" extends="struts-default"&gt;
-                                &lt;action name="Login"&gt;
+                            &lt;package name="default" namespace="/" extends="struts-default"&gt;
+                                &lt;action name="login"&gt;
                                     &lt;result&gt;pages/login.jsp&lt;/result&gt;
                                 &lt;/action&gt;
-                                &lt;action name="Welcome" class="com.aug.user.action.WelcomeUserAction"&gt;
-                                    &lt;result name="SUCCESS"&gt;pages/welcome.jsp&lt;/result&gt;
+                                &lt;action name="welcome" class="com.aug.actions.WelcomeAction"&gt;
+                                    &lt;result name="success"&gt;pages/welcome.jsp&lt;/result&gt;
                                 &lt;/action&gt;
                             &lt;/package&gt;
                         &lt;/struts&gt;
@@ -336,6 +335,42 @@
                            &lt;/filter-mapping&gt;
                         &lt;/web-app&gt;
                     </code></pre>
+                </section>
+                <section>
+                    <h2>Struts 2 Annotation</h2>
+                    <ul>
+                        <li>Scanning Methodology - "struts, struts2, action or actions"</li>
+                        <li>Naming Converter</li>
+                    </ul>
+                </section>
+                <section data-markdown>
+                    ## Scanning Methodology
+                    <pre><code contenteditable style="margin-top: 20px;">
+                        &lt;filter&gt;
+                            &lt;filter-name&gt;struts2&lt;/filter-name&gt;
+                            &lt;filter-class&gt;
+                            org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
+                            &lt;/filter-class&gt;
+                            &lt;init-param&gt;
+                                &lt;param-name&gt;actionPackages&lt;/param-name&gt;
+                                &lt;param-value&gt;com.aug.actions&lt;/param-value&gt;
+                            &lt;/init-param&gt;
+                        &lt;/filter&gt;
+                    </code></pre>
+                </section>
+                <section>
+                    <h2>Let's go to Annotation</h2>
+                    <ul>
+                        <li>Add dependency "struts2-convention-plugin" with version "2.3.16.3"</li>
+                        <li>Create a LoginAction extends ActionSupport</li>
+                        <li>Override the execute() in WelcomeAction</li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>How to change execute() method name ?</h2>
+                </section>
+                <section>
+                    <h2>How to apply struts2 tiles ?</h2>
                 </section>
 				<section>
 					<h1>THE END</h1>
